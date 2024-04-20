@@ -40,3 +40,9 @@ maximoAbsoluto :: Int -> Int -> Int
 maximoAbsoluto x y 
     | absoluto x >= absoluto y = absoluto x
     | otherwise = absoluto y
+
+-- 2 c)
+maxnum3 :: Int -> Int -> Int -> Int 
+maxnum3 x y z  = max x  (max y z)
+
+--2 d) Alguno es 0, I will take the result as boolean
