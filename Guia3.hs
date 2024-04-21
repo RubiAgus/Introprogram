@@ -93,3 +93,10 @@ sacarUnidades :: Int -> Int
 sacarUnidades x | x < 0 = -sacarUnidadesPos (-x)
                 | otherwise = sacarUnidadesPos x
 -}
+
+--EJERCICIO 3  a*a + a*b * k = 0
+
+estanRelacionados :: Int -> Int -> Bool
+estanRelacionados x y = mod (x * x) y == 0  
+
+--Ejercicio 4
