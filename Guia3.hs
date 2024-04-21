@@ -72,3 +72,20 @@ sumaDistintos x y z
 --2 h) Dado 2 numeros naturales decidir si el primero es multiplo del segundo
 esMultiploDe :: Int -> Int -> Bool 
 esMultiploDe x y = mod y x == 0 
+
+--2 i) dado un numero entero, extraer el digito de las unidades
+-- div 10
+quitarUnidades :: Int -> Int
+quitarUnidades x 
+    | x >= 0 = div x 10
+    | otherwise = -quitarUnidades (-x)
+{-
+No estaba logrando que el ejercicio me de con uno negativo y se
+que habia una manera distinta de hacerlo en clase pero en el pastebin esta
+hecho asi: 
+sacarUnidades :: Int -> Int 
+sacarUnidades x | x < 0 = -sacarUnidadesPos (-x)
+                | otherwise = sacarUnidadesPos x
+-}
+
+quitarDecenas
