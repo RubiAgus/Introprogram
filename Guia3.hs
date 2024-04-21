@@ -100,3 +100,13 @@ estanRelacionados :: Int -> Int -> Bool
 estanRelacionados x y = mod (x * x) y == 0  
 
 --Ejercicio 4
+-- 4 a) producto entre 2 tuplas  de reales en reales
+
+prodInterno:: (Float,Float) -> (Float,Float) -> (Float,Float) 
+prodInterno (x,y) (n,m) = (x*n, m*y)
+
+--4 b) 
+todoMenor:: (Float,Float) ->(Float,Float) -> Bool
+todoMenor (x,y) (z,u) = x < z && y < u
+
+-- 4 c) distancia entre dos puntos de R2
