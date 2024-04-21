@@ -46,3 +46,29 @@ maxnum3 :: Int -> Int -> Int -> Int
 maxnum3 x y z  = max x  (max y z)
 
 --2 d) Alguno es 0, I will take the result as boolean
+algunoEs0 :: Int -> Int -> Bool 
+algunoEs0 x y = x == 0 || y == 0
+
+-- 2 e) 
+ambosSon0 :: Int -> Int -> Bool
+ambosSon0 n m = n == 0 && m == 0
+
+-- 2 f) mismo intervalo
+mismoIntervalo :: Int -> Int -> Bool
+mismoIntervalo x y 
+        | x <= 3 && y <= 3 = True
+        | x >= 7 && y >= 7 = True
+        | x > 3 && x < 7 && y > 3 && y < 7 = True
+        |otherwise = False
+-- 2 g) Suma distintos
+
+sumaDistintos :: Int -> Int -> Int -> Int 
+sumaDistintos x y z 
+    | x /= y  && x /= z && y /= z = x + y + z
+   | x == y = z
+   | x == z = y
+   | y == z = x
+   | otherwise = 0
+--2 h) Dado 2 numeros naturales decidir si el primero es multiplo del segundo
+esMultiploDe :: Int -> Int -> Bool 
+esMultiploDe x y = mod y x == 0 
