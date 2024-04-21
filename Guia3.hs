@@ -79,6 +79,12 @@ quitarUnidades :: Int -> Int
 quitarUnidades x 
     | x >= 0 = div x 10
     | otherwise = -quitarUnidades (-x)
+-- div 999 100 = 9, con eso quiero quitar las decenas pero devolver las unidades
+quitarDecenas :: Int -> Int 
+quitarDecenas n 
+    | n >= 0  = (div n 100) * 10 + mod n 10
+    | otherwise = -quitarDecenas (-n)
+
 {-
 No estaba logrando que el ejercicio me de con uno negativo y se
 que habia una manera distinta de hacerlo en clase pero en el pastebin esta
@@ -87,5 +93,3 @@ sacarUnidades :: Int -> Int
 sacarUnidades x | x < 0 = -sacarUnidadesPos (-x)
                 | otherwise = sacarUnidadesPos x
 -}
-
-quitarDecenas
