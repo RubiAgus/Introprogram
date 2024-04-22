@@ -156,4 +156,3 @@ problemaG :: Int -> Int
 problemaG x 
     | mod x 2 == 0 = div x 2
     | otherwise = 3x+1
-    
