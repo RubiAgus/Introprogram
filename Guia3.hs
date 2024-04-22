@@ -144,3 +144,16 @@ crearPar a b = (a,b)
 --4 h) 
 invertir ::(a,b) -> (b,a)
 invertir (a,b) = (b,a)
+
+-- Ejercicio 5
+--problema f
+problemaF :: Int -> Int
+problemaF x 
+    | x <= 7 = x * x
+    | otherwise  = 2x - 1
+--problema g
+problemaG :: Int -> Int 
+problemaG x 
+    | mod x 2 == 0 = div x 2
+    | otherwise = 3x+1
+    
