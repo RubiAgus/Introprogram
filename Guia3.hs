@@ -71,7 +71,9 @@ sumaDistintos x y z
    | otherwise = 0
 --2 h) Dado 2 numeros naturales decidir si el primero es multiplo del segundo
 esMultiploDe :: Int -> Int -> Bool 
-esMultiploDe x y = mod y x == 0 
+esMultiploDe x y 
+    |mod y x == 0 = True
+    |otherwise = False
 
 --2 i) dado un numero entero, extraer el digito de las unidades
 -- div 10
@@ -102,11 +104,43 @@ estanRelacionados x y = mod (x * x) y == 0
 --Ejercicio 4
 -- 4 a) producto entre 2 tuplas  de reales en reales
 
-prodInterno:: (Float,Float) -> (Float,Float) -> (Float,Float) 
+prodInterno:: (Float,Float) -> (Float,Float) -> (Float,Float)
 prodInterno (x,y) (n,m) = (x*n, m*y)
 
 --4 b) 
-todoMenor:: (Float,Float) ->(Float,Float) -> Bool
+todoMenor:: (Float,Float) -> (Float,Float) -> Bool
 todoMenor (x,y) (z,u) = x < z && y < u
 
 -- 4 c) distancia entre dos puntos de R2
+distanciaTuplas :: (Float,Float) -> (Float,Float) -> Float
+distanciaTuplas (w, x) (y,z) = sqrt((y-w) * (y-w) +(z-x)*(z-x))
+
+-- 4 d)
+sumaTerna :: (Int,Int,Int) -> Int
+sumaTerna (x, y , z) = x + y + z
+
+--4 e) Sumar Solo Multiplos
+esMultiplo0 :: Int -> Int -> Int
+esMultiplo0 k x
+    | esMultiploDe x k == True = k
+    | otherwise = 0
+
+sumaSoloMultiplos:: (Int, Int, Int)-> Int -> Int
+sumaSoloMultiplos (x,y,z) n =  esMultiplo0 x n + esMultiplo0 y n + esMultiplo0 z n
+--no se como pedirle que lo haga sin poner 8 combinaciones distintas
+
+
+--4 f) devuelve la posicion del numero par
+posPrimerPar :: Int -> Int ->Int -> Int
+posPrimerPar x y z
+    | mod x 2 == 0 = 1
+    | mod y 2 == 0 = 2
+    |mod  z 2 == 0 = 3
+    |otherwise = 4
+-- 4 g) Juntar dos Variables en una tupla, no importa el tipo de var
+
+crearPar :: a -> b -> (a,b)
+crearPar a b = (a,b) 
+--4 h) 
+invertir ::(a,b) -> (b,a)
+invertir (a,b) = (b,a)
