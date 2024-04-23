@@ -4,9 +4,10 @@ pertenece::(Eq a) => a -> [a] -> Bool
 pertenece _ [] = False
 pertenece a  (y:ys)
     |a  == y = True
+
     |otherwise = pertenece a (ys)
 
---en clase
+--en clase 
 
 -- belongs::(Eq a) => a -> [a] -> Bool
 -- belongs _ [] = False --Caso base
@@ -21,3 +22,10 @@ hayRepetidos (l:ls)
 
     | pertenece l ls = True
     | otherwise = hayRepetidos (ls)
+    
+    -Quitar 
+quitar :: (Eq t) => t -> [t] -> [t]
+quitar _ [] = []
+quitar a (x:xs) 
+  | a  == x = xs
+  |otherwise x: quitar a xs
