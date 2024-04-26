@@ -23,7 +23,7 @@ hayRepetidos (l:ls)
     | pertenece l ls = True
     | otherwise = hayRepetidos (ls)
     
-    -Quitar 
+-Quitar 
 quitar :: (Eq t) => t -> [t] -> [t]
 quitar _ [] = []
 quitar a (x:xs) 
