@@ -63,7 +63,7 @@ dejarUnSoloDigito n
     | n <10 = n
     |otherwise = dejarUnSoloDigito (quitarDigitos n)
 esCapicua :: Int -> Bool
-esCapicua x = mod x 10 == dejarUnSoloDigito x 
+esCapicua x = mod x 10 == dejarUnSoloDigito x --mal el concepto
 --Ejercicio 10 
 funcion1:: Int -> Int 
 funcion1 x 
@@ -86,5 +86,38 @@ raiz2:: Int -> Float
 raiz2 1 = 1
 raiz2 x = ( raiz2(x-1) + 2 /raiz2(x-1)) / 2
 
+-- Espicificar e implementar la siguiente 
+-- funcion f(n,m) =  sum n i=1  sum m j=1 i^j 
+--n <= 0 = 1 convencion, m <= 0 = 1
 
+sumatoriaCompuesta:: Int -> Int -> Int
+sumatoriaCompuesta n m
+    | n <= 0 = 0
+    | m <= 0 = 1
+    | m == 1 = n 
+    |otherwise = n^m + sumatoriaCompuesta (n-1) (m-1)
+
+--ejc 16
+menorDivHasta:: Int -> Int -> Int
+menorDivHasta n i 
+    |mod n i == 0 = i
+    |otherwise = menorDivHasta n (i+1)
+menorDiv :: Int -> Int
+menorDiv n
+    |n == 1 = n
+    |otherwise = menorDivHasta n 2
+
+esPrimo:: Int -> Bool
+esPrimo x 
+    |x == 1 = False
+    |menorDiv x == x = True
+    |otherwise = False 
+
+--ejc 16 c si no tienen algún divisor común entre ambos
+sonCoprimos:: Int -> Int -> Bool
+sonCoprimos x y 
+    | mod x y == y || mod y x == x = True
+    |otherwise = False
+
+contadorPrimos:: Int -> Int
 

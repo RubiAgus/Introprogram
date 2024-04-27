@@ -36,7 +36,7 @@ ARMÀ Una funcion que te sume una cantidad x de nùmeros primos en orden
 contadorPrimos:: Int -> Int
 contadorPrimos x    
     | esPrimo x  == True
-    | othewise = False
+    |   othewise = False
 
 -- sumaPrimos :: Int -> Int
 -- sumaPrimos x --Suma x cantidad de primos
@@ -50,5 +50,5 @@ contadorPrimos x
 --     | otherwise = False
 
 
-fuunc :: [Int]-> Int
-fuunc xs = (x:xs)
+
+
