@@ -123,8 +123,9 @@ sumarN z (x:xs) = [z + x] ++ sumarN z xs
 ordenar::[Int]-> [Int]
 ordenar [] = []
 ordenar (x:xs)
-    | x == maximoLista (x:xs)= x: (maximoLista xs)
-    |otherwise = maximoLista xs ++ x
+    | x == maximoLista (x:xs) = ordenar xs ++ [x] 
+    -- si x es el mas grande, concatenalo atrás
+    |otherwise = x : ordenar xs
 
 --ejc 4, importante
 
