@@ -131,23 +131,6 @@ ordenar (xs) = ordenar (quitar(maximoLista(xs))xs) ++ [maximoLista xs]
 
 --ejc 4, importante
 
--ejc 4, importante
-sacarBlancosRepetidos::[Char]  -> [Char]
-sacarBlancosRepetidos [] = []
-sacarBlancosRepetidos [x] = [x]
-sacarBlancosRepetidos (x:y:xs) -- me fijo los primeros 2 valores
-    |x == ' ' && y == ' ' =  sacarBlancosRepetidos (y:xs)
-    |otherwise  =  x: y: sacarBlancosRepetidos  xs
-
--- Contar Palabras, dada una lista de characteres
-
--- para contar palabras me conviene  contar espacios. y tambièn asegurarme de que el espacio inicial no sea espacio
-contarEspacios::[Char]->
-
-contarPalabras::[Char]-> Int
-contarPalabras [] = 0
-contarPalabras (y:x:xs)
-    |
 
 
 
