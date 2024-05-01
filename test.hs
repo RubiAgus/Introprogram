@@ -33,14 +33,11 @@ esto probablemente sea asociado  a ver si x es primo, luego de eso voy a querer 
 ARMÀ Una funcion que te sume una cantidad x de nùmeros primos en orden 
     -}
 --Requiero un contador de nùmeros primos, para ir sumandolos
-contadorPrimos:: Int -> Int
-contadorPrimos x    
-    | esPrimo x  == True
-    |   othewise = False
+-- contadorPrimos:: Int -> Int
+-- contadorPrimos x    
+--     | esPrimo x  == True
+--     |   othewise = False
 
--- sumaPrimos :: Int -> Int
--- sumaPrimos x --Suma x cantidad de primos
---     | x
 
 
 
@@ -49,6 +46,18 @@ contadorPrimos x
 --     | n = True
 --     | otherwise = False
 
+-- longitud:: (Eq t) =>[t] -> Int
+-- longitud [] = 0
+-- longitud (x:xs) = 1 + longitud xs
 
+--  ultimo :: (Eq t) => [t] -> t 
+-- ultimo [x] = x
+-- ultimo xs 
+--     |longitud (tail xs) == 1 = head xs
+--     |otherwise = ultimo (tail xs)
 
-
+quitarTodos :: Eq t => t -> [t] -> [t]
+quitarTodos _ [] = []
+quitarTodos b (x:xs)
+    | b == x    = quitarTodos b xs
+    | otherwise = x : quitarTodos b xs

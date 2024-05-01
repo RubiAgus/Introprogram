@@ -114,10 +114,10 @@ esPrimo x
     |otherwise = False 
 
 --ejc 16 c si no tienen algún divisor común entre ambos
-sonCoprimos:: Int -> Int -> Bool
-sonCoprimos x y 
-    | mod x y == y || mod y x == x = True
-    |otherwise = False
+-- sonCoprimos:: Int -> Int -> Bool
+-- sonCoprimos x y 
+--     | mod x y == y || mod y x == x = True
+--     |otherwise = False
 
-contadorPrimos:: Int -> Int
+-- contadorPrimos:: Int -> Int
 
