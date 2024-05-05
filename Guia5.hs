@@ -1,6 +1,7 @@
+module Guia5 where
 
-
-longitud:: (Eq t) =>[t] -> Int
+--longitud:: (Eq ) =>[t] -> Int
+longitud::[Int]->Int
 longitud [] = 0
 longitud (x:xs) = 1 + longitud xs
 
@@ -120,48 +121,74 @@ sumarN _ [] = []
 sumarN z [x]= [z +x ]
 sumarN z (x:xs) = [z + x] ++ sumarN z xs
 
-
-
 ordenar::[Int]-> [Int]
 ordenar [] = []
-ordenar (xs) = ordenar (quitar(maximoLista(xs))xs) ++ [maximoLista xs]
-    -- si x es el mas grande, concatenalo atrás, probra quitar el elemento mas grande y luego proceder
-
-
+ordenar (xs) = ordenar((quitar(maximoLista xs)xs)) ++ [maximoLista xs]
 
 --ejc 4, importante
+sacarBlancosRepetidos::[Char]->[Char]
+sacarBlancosRepetidos [] = []
+sacarBlancosRepetidos [x] = [x]
+sacarBlancosRepetidos (y:x:xs)
+    |y == x && x == ' ' = sacarBlancosRepetidos (x:xs)
+    |otherwise = y:sacarBlancosRepetidos(x:xs)
+-- Contar Palabras, dada una lista de characteres
+
+--para contar palabras me conviene  contar espacios.
+--y tambièn asegurarme de que el espacio inicial no sea espacio
+quitarEspacioFinal::[Char]-> [Char]
+quitarEspacioFinal [] = []
+quitarEspacioFinal (x:[])
+    | x== ' ' = []
+    |otherwise = [x]
+quitarEspacioFinal(x:xs)= x:quitarEspacioFinal xs
+
+quitarEspacioIniFin::[Char]->[Char]
+quitarEspacioIniFin [] = []
+quitarEspacioIniFin(x:xs)
+    |x== ' ' = quitarEspacioFinal xs
+    |otherwise =x:quitarEspacioFinal xs-- there was an issue on the code above
+
+contarEspacios::[Char]->Int
+contarEspacios [] = 0
+contarEspacios  (x:xs)
+    |x == ' ' = 1 + contarEspacios xs
+    |otherwise = contarEspacios  xs
+
+quitarTodoEspacioAlPedo::[Char]->[Char]
+quitarTodoEspacioAlPedo (xs) =quitarEspacioIniFin(sacarBlancosRepetidos xs)
+
+contarPalabras::[Char]-> Int
+contarPalabras xs =contarEspacios(quitarTodoEspacioAlPedo xs) + 1
+
+--Lista de palabras
+primeraPalabraAux::[Char]->[Char]
+primeraPalabraAux (x:xs) 
+    |x /= ' ' =  x :primeraPalabraAux (xs)
+    |otherwise = []
+
+
+primeraPalabra xs = primeraPalabraAux(quitarTodoEspacioAlPedo(xs))
 
 
 
+quitarPrimeraPalabra::[Char]->[Char]
+quitarPrimeraPalabra [] = []
+quitarPrimeraPalabra (x:xs)
+    |x == ' ' = quitarPrimeraPalabra xs
+    |otherwise =  x: (quitarPrimeraPalabra xs)
 
-
--- sacarBlancosRepetidos::[Char] -> [Char]--saca espacios vaciós repetidos
--- --Caso base, lista vacia, lista con un solo character
--- sacarBlancosRepetidos [] = []
--- sacarBlancosRepetidos (x:[]) = [x] --ESTO
-
-
-
-
---enrealidad hay que fijarse que cada elemento de uno pertenezca a la
---otra lista     
-
-
-
-
-
---en clase 
-
--- belongs::(Eq a) => a -> [a] -> Bool
--- belongs _ [] = False --Caso base
--- belongs a (x:xs) = a == x || belongs a xs
-
--- --2.4, Hay repetidos
--- --Caso base, la lista está vacía (NO HAY REPETIDOS)
-
--- hayRepetidos:: (Eq t) => [t] -> Bool
--- hayRepetidos []= False
--- hayRepetidos (l:ls)
---     | pertenece l ls = True
---     | otherwise = hayRepetidos (ls)
+palabrasAUX::[Char]->[[]]
+palabrasAUX [] = []
+palabrasAUX (x:xs) = primeraPalabra (xs):palabrasAUX(quitarPrimeraPalabra xs)
     
+    
+
+-- palabras:: [Char]-> [[Char]]
+-- palabras []=[]
+-- palabras (x:xs)
+--     |x/= ' ' = primeraPalabra (x:xs) : quitarPrimeraPalabra(x:xs)
+
+
+
+--palabraMasLarga::[Char]-> Int
