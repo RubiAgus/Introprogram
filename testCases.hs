@@ -12,12 +12,27 @@ testLength = test [
     "Empty list" ~: longitud ([] :: [Int]) ~?= 0,
     "Single element" ~: longitud [42] ~?= 1,
     "Multiple elements" ~: longitud [1, 2, 3, 4, 5] ~?= 5,
-    "List of characters" ~: longitud "hello" ~?= 5,
+    "List of characters" ~: longitud "hello" ~?= 5, 
     "List of booleans" ~: longitud [True, False, True] ~?= 3
     ]
 
--- testEspacios = test [
+testPrimeraPalabra = test [
+    "listaVacia"~: primeraPalabra [] ~?= [],
+    "lista con espacio adelante"~: primeraPalabra " working? xD" ~?= "working?"
+    ]
 
+testQuitarPrimeraPalabra = test [
+    "Lista Vacía"~: quitarPrimeraPalabra [] ~?= [],
+    "lista una palabra"~: quitarPrimeraPalabra "hola" ~?= [],
+    "lista 3 palabras"~: quitarPrimeraPalabra  "hola todo bien?" ~?= "todo bien?"
 
+    ]
+    
+testPalabrasAUX = test [
+    "Lista Vacía"~:  palabras[] ~?= [],
+    "lista una palabra"~: palabras "Hola" ~?= ["Hola"],
+    "lista 3 palabras"~: palabras "hola todo bien?" ~?= ["hola","todo", "bien?"],
+    "lista espacios de sobra"~: palabras " hola  todo    bien?" ~?= ["hola","todo", "bien?"]
 
---     ]
+    ]
+

@@ -1,7 +1,6 @@
 module Guia5 where
 
---longitud:: (Eq ) =>[t] -> Int
-longitud::[Int]->Int
+longitud:: (Eq t) =>[t] -> Int
 longitud [] = 0
 longitud (x:xs) = 1 + longitud xs
 
@@ -163,6 +162,7 @@ contarPalabras xs =contarEspacios(quitarTodoEspacioAlPedo xs) + 1
 
 --Lista de palabras
 primeraPalabraAux::[Char]->[Char]
+primeraPalabraAux [] = []
 primeraPalabraAux (x:xs) 
     |x /= ' ' =  x :primeraPalabraAux (xs)
     |otherwise = []
@@ -171,24 +171,49 @@ primeraPalabraAux (x:xs)
 primeraPalabra xs = primeraPalabraAux(quitarTodoEspacioAlPedo(xs))
 
 
-
 quitarPrimeraPalabra::[Char]->[Char]
 quitarPrimeraPalabra [] = []
 quitarPrimeraPalabra (x:xs)
-    |x == ' ' = quitarPrimeraPalabra xs
-    |otherwise =  x: (quitarPrimeraPalabra xs)
+    |x == ' ' = xs
+    |otherwise =  (quitarPrimeraPalabra xs)
 
-palabrasAUX::[Char]->[[]]
+
+
+palabrasAUX::[Char]->[[Char]]
 palabrasAUX [] = []
-palabrasAUX (x:xs) = primeraPalabra (xs):palabrasAUX(quitarPrimeraPalabra xs)
-    
-    
+palabrasAUX (x:xs) = primeraPalabra (x:xs):palabrasAUX(quitarPrimeraPalabra (x:xs))
 
--- palabras:: [Char]-> [[Char]]
--- palabras []=[]
--- palabras (x:xs)
---     |x/= ' ' = primeraPalabra (x:xs) : quitarPrimeraPalabra(x:xs)
+palabras xs = palabrasAUX(quitarTodoEspacioAlPedo xs)
 
 
+palabraMasLarga::[Char]->[Char]
+palabraMasLarga []= []
+palabraMasLarga (xs)
+    |quitarPrimeraPalabra (xs) == [] = primeraPalabra(xs)
+    |longitud (primeraPalabraAux xs) > longitud(primeraPalabra(quitarPrimeraPalabra xs)) = palabraMasLarga(
+        primeraPalabra xs ++ ' ':(quitarPrimeraPalabra(quitarPrimeraPalabra xs)))    
+    |otherwise = palabraMasLarga (quitarPrimeraPalabra xs)
 
---palabraMasLarga::[Char]-> Int
+aplanar::[[Char]] -> [Char]
+aplanar [] = []
+aplanar (x:xs) = x ++ aplanar (xs)
+
+aplanarConBlancos:: [[Char]] -> [Char]
+aplanarConBlancos [] = []
+aplanarConBlancos (x:xs) = x ++ ' ':aplanarConBlancos (xs)
+
+addEspacios::Int -> [Char]
+addEspacios 0 = []
+addEspacios num  =  ' ': addEspacios(num-1) 
+--n requiere que yo haga una secuencia de blancos
+aplanarConNBlancos::[[Char]]->Int ->[Char]
+aplanarConNBlancos [] _ = []
+aplanarConNBlancos (x:xs) y 
+    |xs /=[] = x ++ (addEspacios y) ++ aplanarConNBlancos xs y
+    |otherwise = x ++ aplanarConNBlancos xs y
+
+sumaAcumulada::[Int]->[Int]
+sumaAcumulada []=[]
+sumaAcumulada [x]=[x]
+sumaAcumulada (x:y:xs) = x:(sumaAcumulada(y+x:xs))
+
